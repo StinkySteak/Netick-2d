@@ -18,43 +18,43 @@ MonoBehaviour:
   WeaverErrors: []
   _Prefabs:
   - Obj: {fileID: 6245319473119334362, guid: 84bdaf9c034444f408cc66234ee3344d, type: 3}
-    InstanceId: 24822
+    InstanceId: 36254
     Name: Bomb
     FileName: Assets/Netick/Samples/Bomberman/Network Prefabs/Bomb.prefab
     GO: {fileID: 8886278785656527844, guid: 84bdaf9c034444f408cc66234ee3344d, type: 3}
     Id: 0
   - Obj: {fileID: -3156242378426720455, guid: 98e433893a4b70f41a8ab2145afe3e07, type: 3}
-    InstanceId: 24826
+    InstanceId: 36258
     Name: Bomberman Player
     FileName: Assets/Netick/Samples/Bomberman/Network Prefabs/Bomberman Player.prefab
     GO: {fileID: 2511112182317059464, guid: 98e433893a4b70f41a8ab2145afe3e07, type: 3}
     Id: 1
   - Obj: {fileID: 9137365252298567976, guid: 8e254087cbaecc049ac87981c263d46c, type: 3}
-    InstanceId: 24830
+    InstanceId: 36262
     Name: DestroyableBlock
     FileName: Assets/Netick/Samples/Bomberman/Network Prefabs/DestroyableBlock.prefab
     GO: {fileID: 9137365252298567970, guid: 8e254087cbaecc049ac87981c263d46c, type: 3}
     Id: 2
   - Obj: {fileID: 1760582584185291754, guid: 09a0cccbd8f361641bd963785a4b016c, type: 3}
-    InstanceId: 24834
+    InstanceId: 36266
     Name: Power Up
     FileName: Assets/Netick/Samples/Bomberman/Network Prefabs/Power Up.prefab
     GO: {fileID: 3064325587269614628, guid: 09a0cccbd8f361641bd963785a4b016c, type: 3}
     Id: 3
   - Obj: {fileID: 7964446607963561239, guid: d66d5a97430d3364890108321123b309, type: 3}
-    InstanceId: 24838
+    InstanceId: 36270
     Name: FPS Player
     FileName: Assets/Netick/Samples/First Person Shooter/Network Prefabs/FPS Player.prefab
     GO: {fileID: 7011933354638177272, guid: d66d5a97430d3364890108321123b309, type: 3}
     Id: 4
   - Obj: {fileID: 6227686387458090603, guid: 34689c30bb1622b40810cf2a09557259, type: 3}
-    InstanceId: 31784
+    InstanceId: 36274
     Name: Player
     FileName: Assets/Prefabs/Player.prefab
     GO: {fileID: 6227686387458090600, guid: 34689c30bb1622b40810cf2a09557259, type: 3}
     Id: 5
   - Obj: {fileID: -2943056072861220967, guid: f39c4a972e70f534ba43033e0bb4d3ad, type: 3}
-    InstanceId: 24842
+    InstanceId: 36278
     Name: PlayerController
     FileName: Assets/Prefabs/PlayerController.prefab
     GO: {fileID: 1134816909060602464, guid: f39c4a972e70f534ba43033e0bb4d3ad, type: 3}

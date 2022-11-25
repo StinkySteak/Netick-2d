@@ -38,7 +38,7 @@ public class ConnectionManager : NetworkEventsListner
 
     public override void OnClientDisconnected(NetworkSandbox sandbox, NetworkConnection client)
     {
-        WriteConnection($"[Client: PeerId: {client.Id - 2} is Disconnected]");
+        WriteConnection($"[Client: PeerId: {client.Id + 2} is Disconnected]");
         LevelManager.Instance.OnNetworkPlayerDisconnected(PlayerRef.Create(client.Id + 2));
     }
 

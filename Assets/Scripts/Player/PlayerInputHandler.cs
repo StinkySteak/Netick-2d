@@ -11,14 +11,18 @@ public class PlayerInputHandler : NetworkBehaviour
     {
         var input = Sandbox.GetInput<PlayerInput>();
 
-        input.MoveDirection = new (Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        input.Horizontal = Input.GetAxis("Horizontal");
+        input.Jump = Input.GetKey(KeyCode.Space);
     }
 
     public override void NetworkFixedUpdate()
     {
         if (FetchInput(out PlayerInput input))
         {
-            PlayerController.SetMove(input.MoveDirection);
+            PlayerController.SetMove(input.Horizontal);
+
+            if (input.Jump)
+                PlayerController.SetJump();
         }
     }
 }

@@ -5,5 +5,6 @@ using Netick;
 
 public class PlayerInput : NetworkInput
 {
-    public Vector2 MoveDirection;
+    public float Horizontal;
+    public bool Jump;
 }
