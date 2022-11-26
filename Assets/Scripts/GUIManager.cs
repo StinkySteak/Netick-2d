@@ -16,4 +16,9 @@ public class GUIManager : SimpleSingleton<GUIManager>
     {
         ConnectionManager.Instance.StartClient();
     }
+
+    public void RequestRespawn()
+    {
+        LevelManager.Instance.RPC_RequestRespawn(Player.LocalPlayer.PlayerId);
+    }
 }

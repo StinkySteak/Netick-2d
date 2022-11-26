@@ -34,14 +34,15 @@ public class PlayerController : NetworkBehaviour
 
         if (hit)
         {
+            if (hit.collider.transform.parent == null)
+                return;
+
             if(!hit.collider.transform.parent.TryGetComponent(out MovingPlatform platform))
                 return;
 
             var predictedVelocity = platform.Rigidbody2D.velocity;
 
             Rigidbody2D.velocity += predictedVelocity;
-
-            print("MovingPlatform: " + predictedVelocity);
         }
     }
 

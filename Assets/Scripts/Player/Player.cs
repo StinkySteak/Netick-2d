@@ -7,11 +7,33 @@ public class Player : EnhancedNB
 {
     public static Player LocalPlayer;
 
-    [Networked] public int TeamId { get; set; }
+    [Networked] public State PlayerState { get; set; } = State.Despawned;
+
+    public enum State
+    {
+        Despawned,
+        Spawned
+    }
+
+    public void OnDespawned()
+    {
+       // print("OnDespawned");
+        PlayerState = State.Despawned;
+    }
+
+    [OnChanged(nameof(PlayerState))]
+    void OnPlayerStateChanged(State prevState)
+    {
+       // print("OnPlayerStateChanged");
+
+        if (PlayerState == State.Despawned)
+            PlayerManager.Instance.SpawnedPlayersObj.Remove(PlayerId);
+    }
+
 
     public override void NetworkStart()
     {
-        print($"IsLocalPlayer: {Object.IsInputSource} TeamId: {TeamId}");
+        print($"IsLocalPlayer: {Object.IsInputSource}");
 
         if (Object.IsInputSource)
             LocalPlayer = this;

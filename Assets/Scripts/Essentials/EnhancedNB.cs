@@ -21,6 +21,9 @@ public class EnhancedNB : NetworkBehaviour
         OnPlayerIdAssigned();
     }
 
+    /// <summary>
+    /// This Means PlayerRef Property is assigned/changed by Server
+    /// </summary>
     protected virtual void OnPlayerIdAssigned()
     {
 
