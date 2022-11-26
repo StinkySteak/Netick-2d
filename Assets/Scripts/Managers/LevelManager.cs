@@ -32,7 +32,7 @@ public class LevelManager : NetworkSingleton<LevelManager>
     /// Will Attempt to Spawn new [PlayerSetup]
     /// </summary>
     /// <param name="player"></param>
-    void SpawnPlayer(NetworkPlayer player, PlayerRef playerRef)
+    public void SpawnPlayer(NetworkPlayer player, PlayerRef playerRef)
     {
         if (Sandbox.IsClient) return;
 
@@ -82,18 +82,7 @@ public class LevelManager : NetworkSingleton<LevelManager>
         PlayerManager.Instance.SpawnedPlayers[playerRef].OnDespawned();
     }
 
-    [Rpc(source: RpcPeers.Everyone, target: RpcPeers.Everyone, isReliable: true)]
-    public void RPC_RequestRespawn(PlayerRef playerRef)
-    {
-        print("RPC_RequestRespawn by: " + Sandbox.GetRpcCaller());
-
-        PlayerManager.Instance.SpawnedPlayers.TryGetValue(playerRef, out var expectedPlayer);
-
-        if (PlayerManager.Instance.SpawnedPlayersObj.ContainsKey(playerRef)) // Player is still Alive
-            return;
-
-        SpawnPlayer(expectedPlayer.InputSource, playerRef);
-    }
+   
 
 
 

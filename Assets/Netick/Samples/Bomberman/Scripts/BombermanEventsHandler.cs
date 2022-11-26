@@ -63,8 +63,6 @@ namespace Netick.Samples.Bomberman
         // This is called on the server and the clients when the scene has been loaded.
         public override void OnSceneLoaded(NetworkSandbox sandbox)
         {
-            print("OnSceneLoaded");
-
             if (sandbox.IsClient)
                 return;
 

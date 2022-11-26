@@ -8,7 +8,6 @@ using NetworkPlayer = Netick.NetworkPlayer;
 public class PlayerSetup : EnhancedNB
 {
     public static PlayerSetup LocalPlayer;
-
     public Player PlayerData => PlayerManager.Instance.SpawnedPlayers[PlayerId];
 
     protected override void OnPlayerIdAssigned()
