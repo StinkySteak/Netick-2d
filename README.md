@@ -27,14 +27,65 @@ Cons:
 
 # Project Walkthrough
 
-##ConnectionManager
+### ConnectionManager
 
 Handling Connections: Start Client/Server, OnClientJoined/Left
 
-LevelManager: Handling Gameloop (De/Spawn Player)
+```cs
+    public override void OnClientConnected(NetworkSandbox sandbox, NetworkConnection client)
+    {
+        LevelManager.Instance.OnNetworkPlayerConnected(client, PlayerRef.Create(client.Id + 2));
+    }
 
-PlayerController: PlayerInputHandler -- (PlayerInput) --> PlayerController
+    public override void OnClientDisconnected(NetworkSandbox sandbox, NetworkConnection client)
+    
+        LevelManager.Instance.OnNetworkPlayerDisconnected(PlayerRef.Create(client.Id + 2));
+    }
+```
 
-PlayerManager: Tracking Connected & Alive Players
+### LevelManager
+
+Handling Gameloop (De/Spawn Player)
+```cs
+
+    void SpawnPlayerExistance(NetworkPlayer player, PlayerRef playerRef)
+    {
+        var playerPlaceHolder = Sandbox.NetworkInstantiate(Sandbox.GetPrefab("Player"), Vector2.zero, Quaternion.identity, player);
+    }
+    
+    public void SpawnPlayer(NetworkPlayer player, PlayerRef playerRef)
+    {
+        var playerObj = Sandbox.NetworkInstantiate(Sandbox.GetPrefab("PlayerController"), SpawnPosition.position, Quaternion.identity, player);
+    }
+```
+
+### PlayerController/Setup/Input
+
+PlayerInputHandler -- (PlayerInput) --> PlayerController
+
+```cs
+ public override void NetworkUpdate()
+    {
+        var input = Sandbox.GetInput<PlayerInput>();
+
+        input.Horizontal = Input.GetAxis("Horizontal");
+        input.Jump = Input.GetKey(KeyCode.Space);
+    }
+
+    public override void NetworkFixedUpdate()
+    {
+        if (FetchInput(out PlayerInput input))
+            PlayerController.SetMove(input.Horizontal);
+    }
+```
+
+### PlayerManager
+
+Tracking Connected & Alive Players, Effective ways to get Remote Player Data
+
+```cs
+    public Dictionary<PlayerRef, Player> SpawnedPlayers { get; set; } = new();
+    public Dictionary<PlayerRef, PlayerSetup> SpawnedPlayersObj { get; set; } = new();
+```
 
 
