@@ -22,7 +22,7 @@ public struct PlayerRef
     public static PlayerRef None => default;
 
     /// <summary>
-    /// Only Create on OnClientConnected OR By getting other PlayerRef Reference
+    /// Only Create on OnClientConnected OR By getting other PlayerRef.Id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -32,7 +32,10 @@ public struct PlayerRef
     {
         return $"[PlayerRef: {playerId.Id}]";
     }
-
+    public static explicit operator PlayerRef(int playerId)
+    {
+        return Create(playerId);
+    }
     public static implicit operator int(PlayerRef playerId)
     {
         return playerId.Id;
@@ -53,4 +56,11 @@ public struct PlayerRef
     {
         return base.GetHashCode();
     }
+}
+
+
+[Networked]
+public struct EmptyRef
+{
+
 }

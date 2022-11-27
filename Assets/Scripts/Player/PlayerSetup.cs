@@ -10,6 +10,13 @@ public class PlayerSetup : EnhancedNB
     public static PlayerSetup LocalPlayer;
     public Player PlayerData => PlayerManager.Instance.SpawnedPlayers[PlayerId];
 
+    [HideInInspector] public PlayerController PlayerController;
+
+    public override void NetworkStart()
+    {
+        PlayerController = GetComponent<PlayerController>();
+    }
+
     protected override void OnPlayerIdAssigned()
     {
         if (Object.IsInputSource)

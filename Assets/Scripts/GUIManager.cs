@@ -22,6 +22,6 @@ public class GUIManager : SimpleSingleton<GUIManager>
         if (Player.LocalPlayer == null)
             return;
 
-        Player.LocalPlayer.RPC_RequestRespawn(Player.LocalPlayer.PlayerId); // Player.LocalPlayer.PlayerId
+        Player.LocalPlayer.RPC_RequestRespawn(); // 
     }
 }

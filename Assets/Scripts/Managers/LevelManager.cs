@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Netick;
 using NetworkPlayer = Netick.NetworkPlayer;
+using System;
 
 public class LevelManager : NetworkSingleton<LevelManager>
 {
     public Transform SpawnPosition;
+    public static event Action OnRender;
+
+    public override void NetworkRender()
+    {
+        OnRender?.Invoke();
+    }
 
     public override void NetworkStart()
     {
@@ -82,8 +89,22 @@ public class LevelManager : NetworkSingleton<LevelManager>
         PlayerManager.Instance.SpawnedPlayers[playerRef].OnDespawned();
     }
 
-   
 
+    //[Rpc(source: RpcPeers.Everyone, target: RpcPeers.Owner, isReliable: true)]
+    //public void RPC_RequestRespawn(int playerId) // PlayerRef playerRef
+    //{
+    //    print($"RPC_RequestRespawn by: {Sandbox.RpcSource}");
+
+    //    PlayerRef player = PlayerRef.Create(playerId);
+
+    //    if (!PlayerManager.Instance.SpawnedPlayers.TryGetValue(player, out var expectedPlayer))
+    //        return;
+
+    //    if (PlayerManager.Instance.SpawnedPlayersObj.ContainsKey(player)) // Player is still Alive
+    //        return;
+
+    //    SpawnPlayer(expectedPlayer.InputSource, player);
+    //}
 
 
 

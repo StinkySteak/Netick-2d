@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : EnhancedNB
 {
     public static Player LocalPlayer;
+    public static NetworkSandbox LocalSandbox => LocalPlayer.Object.Sandbox;
 
     [Networked] public State PlayerState { get; set; } = State.Despawned;
 
@@ -31,11 +32,12 @@ public class Player : EnhancedNB
     }
 
     [Rpc(source: RpcPeers.InputSource, target: RpcPeers.Owner, isReliable: true)]
-    public void RPC_RequestRespawn(PlayerRef playerRef) // PlayerRef playerRef
+    public void RPC_RequestRespawn() // PlayerRef playerRef
     {
-        print("RPC_RequestRespawn by: " + playerRef);
+        print($"RPC_RequestRespawn by: {Sandbox.RpcSource}");
 
-        PlayerManager.Instance.SpawnedPlayers.TryGetValue(PlayerId, out var expectedPlayer);
+        if (!PlayerManager.Instance.SpawnedPlayers.TryGetValue(PlayerId, out var expectedPlayer))
+            return;
 
         if (PlayerManager.Instance.SpawnedPlayersObj.ContainsKey(PlayerId)) // Player is still Alive
             return;

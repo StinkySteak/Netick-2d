@@ -15,14 +15,14 @@ public class PlayerManager : SimpleSingleton<PlayerManager>
         if (SpawnedPlayers.Count <= 0)
             return;
 
-        print($"SpawnedPlayers: {SpawnedPlayersObj.Count} Players: {SpawnedPlayers.Count}");
+       // print($"SpawnedPlayers: {SpawnedPlayersObj.Count} Players: {SpawnedPlayers.Count}");
     }
 
     public void AddSpawnedPlayer(PlayerRef newPlayer, Player newObj)
     {
         if (SpawnedPlayers.ContainsKey(newPlayer))
         {
-            Debug.LogError($"[PlayerManager]: Key is Exist! Existed: {newPlayer.Id} New: {newPlayer.Id}");
+            Debug.LogError($"[PlayerManager]: Key is Exist! Existed: {newPlayer.Id}");
             return;
         }
 

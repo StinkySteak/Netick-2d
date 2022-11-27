@@ -12,6 +12,7 @@ public class PlayerController : NetworkBehaviour
 
     public float MoveSpeed;
 
+    public float JumpCooldown = 2;
     public float JumpForce = 5;
 
     public Transform RaycastPoint;
@@ -20,6 +21,8 @@ public class PlayerController : NetworkBehaviour
 
     [Networked] bool IsGrounded { get; set; }
     [Networked] float Horizontal { get; set; }
+
+    [Networked] public TickTimer JumpCooldownTimer { get; set; }
 
     public override void NetworkFixedUpdate()
     {
@@ -37,7 +40,7 @@ public class PlayerController : NetworkBehaviour
             if (hit.collider.transform.parent == null)
                 return;
 
-            if(!hit.collider.transform.parent.TryGetComponent(out MovingPlatform platform))
+            if (!hit.collider.transform.parent.TryGetComponent(out MovingPlatform platform))
                 return;
 
             var predictedVelocity = platform.Rigidbody2D.velocity;
@@ -53,8 +56,14 @@ public class PlayerController : NetworkBehaviour
 
     public void SetJump()
     {
-        if (IsGrounded)
-            Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, JumpForce);
+        if (!IsGrounded)
+            return;
+
+        if (!JumpCooldownTimer.IsExpired(Sandbox))
+            return;
+
+        JumpCooldownTimer = TickTimer.CreateFromSeconds(Sandbox,JumpCooldown);
+        Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, JumpForce);
     }
 
     public void SetMove(float horizontal)

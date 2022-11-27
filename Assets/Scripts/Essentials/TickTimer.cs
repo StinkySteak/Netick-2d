@@ -13,11 +13,14 @@ public struct TickTimer
 {
     public int EstablishedTick { get; private set; }
     public int TargetTick { get; private set; }
-    public float RemainingTick => TargetTick - EstablishedTick;
-
+    public float TickDuration => TargetTick - EstablishedTick;
+    public float RemainingTick(NetworkSandbox sandbox)
+    {
+        return TargetTick - sandbox.Tick.TickValue;
+    }
     public float RemainingSecond(NetworkSandbox sandbox)
     {
-        return RemainingTick * 1 / sandbox.FixedDeltaTime;
+        return Mathf.Max(RemainingTick(sandbox) / (1 / sandbox.FixedDeltaTime), 0f);
     }
 
     /// <summary>
