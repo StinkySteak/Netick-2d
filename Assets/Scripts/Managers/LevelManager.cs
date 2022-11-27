@@ -87,6 +87,8 @@ public class LevelManager : NetworkSingleton<LevelManager>
     }
 
 
+    // THIS MOVED TO Player.cs due to RPC Netick Bug
+
     //[Rpc(source: RpcPeers.Everyone, target: RpcPeers.Owner, isReliable: true)]
     //public void RPC_RequestRespawn(int playerId) // PlayerRef playerRef
     //{
