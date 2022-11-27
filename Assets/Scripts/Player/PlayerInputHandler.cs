@@ -13,6 +13,9 @@ public class PlayerInputHandler : NetworkBehaviour
 
         input.Horizontal = Input.GetAxis("Horizontal");
         input.Jump = Input.GetKey(KeyCode.Space);
+        input.PauseTimer = Input.GetKey(KeyCode.X);
+        input.UnpauseTimer = Input.GetKey(KeyCode.Y);
+
     }
 
     public override void NetworkFixedUpdate()
@@ -23,6 +26,11 @@ public class PlayerInputHandler : NetworkBehaviour
 
             if (input.Jump)
                 PlayerController.SetJump();
+
+            if (input.PauseTimer)
+                PlayerController.SetTimerPause(true);
+            if (input.UnpauseTimer)
+                PlayerController.SetTimerPause(false);
         }
     }
 }

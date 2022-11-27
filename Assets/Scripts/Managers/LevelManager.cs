@@ -5,6 +5,9 @@ using Netick;
 using NetworkPlayer = Netick.NetworkPlayer;
 using System;
 
+/// <summary>
+/// Managing Game Loop: Spawn/Despawn
+/// </summary>
 public class LevelManager : NetworkSingleton<LevelManager>
 {
     public Transform SpawnPosition;
@@ -13,12 +16,6 @@ public class LevelManager : NetworkSingleton<LevelManager>
     public override void NetworkRender()
     {
         OnRender?.Invoke();
-    }
-
-    public override void NetworkStart()
-    {
-        if (Object.IsOwner)
-            Object.PermitInput(Sandbox.LocalPlayer);
     }
 
     /// <summary>

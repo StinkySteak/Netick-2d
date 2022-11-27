@@ -7,4 +7,7 @@ public class PlayerInput : NetworkInput
 {
     public float Horizontal;
     public bool Jump;
+
+    public bool PauseTimer;
+    public bool UnpauseTimer;
 }

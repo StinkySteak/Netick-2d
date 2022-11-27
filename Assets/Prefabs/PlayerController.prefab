@@ -96,7 +96,7 @@ MonoBehaviour:
   Relevance: 1
   NetworkedRigidbody2D: {fileID: 1134816909060602471}
   Rigidbody2D: {fileID: 1134816909060602468}
-  MoveSpeed: 7
+  MoveSpeed: 350
   JumpCooldown: 1
   JumpForce: 8
   RaycastPoint: {fileID: 1878324137239742724}

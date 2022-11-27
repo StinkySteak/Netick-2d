@@ -24,13 +24,29 @@ public class PlayerController : NetworkBehaviour
 
     [Networked] public TickTimer JumpCooldownTimer { get; set; }
 
+    [Networked] public PauseableTickTimer PauseableTimer { get; set; }
+
+    public override void NetworkStart()
+    {
+        PauseableTimer = PauseableTickTimer.CreateFromSeconds(Sandbox, 10);
+    }
+
     public override void NetworkFixedUpdate()
     {
         SetGrounded();
         Move();
         PredictPlatform();
     }
-
+    public void SetTimerPause(bool value)
+    {
+        if (value)
+            PauseableTimer = PauseableTimer.Pause(Sandbox);
+        else
+            PauseableTimer = PauseableTimer.Resume(Sandbox);
+    }
+    /// <summary>
+    /// Client Side Prediction for Moving Platform
+    /// </summary>
     void PredictPlatform()
     {
         var hit = Physics2D.Raycast(RaycastPoint.transform.position, Vector2.down, RaycastDistance);
@@ -43,6 +59,7 @@ public class PlayerController : NetworkBehaviour
             if (!hit.collider.transform.parent.TryGetComponent(out MovingPlatform platform))
                 return;
 
+            // Getting The Predicted Velocity
             var predictedVelocity = platform.Rigidbody2D.velocity;
 
             Rigidbody2D.velocity += predictedVelocity;
@@ -62,7 +79,7 @@ public class PlayerController : NetworkBehaviour
         if (!JumpCooldownTimer.IsExpired(Sandbox))
             return;
 
-        JumpCooldownTimer = TickTimer.CreateFromSeconds(Sandbox,JumpCooldown);
+        JumpCooldownTimer = TickTimer.CreateFromSeconds(Sandbox, JumpCooldown);
         Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, JumpForce);
     }
 
@@ -73,6 +90,6 @@ public class PlayerController : NetworkBehaviour
 
     void Move()
     {
-        Rigidbody2D.velocity = new Vector2(Horizontal * MoveSpeed, Rigidbody2D.velocity.y);
+        Rigidbody2D.velocity = new Vector2(Horizontal * MoveSpeed * Sandbox.FixedDeltaTime, Rigidbody2D.velocity.y);
     }
 }

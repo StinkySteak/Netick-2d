@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A Placeholder Player Data, good for Nickname, Kill, Death, Score, etc ... 
+/// <para>Which will not Despawned Until the Player Left</para>
+/// </summary>
 public class Player : EnhancedNB
 {
     public static Player LocalPlayer;

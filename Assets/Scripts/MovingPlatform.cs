@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Only use This behaviour for MovingPlatform Tagged GameObject
+/// </summary>
 public class MovingPlatform : NetworkBehaviour
 {
     Vector2 NextPos;
@@ -20,6 +23,10 @@ public class MovingPlatform : NetworkBehaviour
     public Rigidbody2D Rigidbody2D;
 
     [Networked] public Vector2 Velocity { get; private set; }
+
+    /// <summary>
+    /// Flip Platform Moving Direction
+    /// </summary>
     [Networked] TickTimer FlipTimer { get; set; }
 
     public override void NetworkStart()
