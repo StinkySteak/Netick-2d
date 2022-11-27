@@ -87,5 +87,6 @@ Tracking Connected & Alive Players, Effective ways to get Remote Player Data
     public Dictionary<PlayerRef, Player> SpawnedPlayers { get; set; } = new();
     public Dictionary<PlayerRef, PlayerSetup> SpawnedPlayersObj { get; set; } = new();
 ```
-
+## Project Flow
+![alt text](https://github.com/StinkySteak/Netick-2d/blob/master/Assets/Resource/flow.png "project flow")
 
