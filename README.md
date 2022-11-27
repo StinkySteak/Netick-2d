@@ -24,3 +24,17 @@ Cons:
 ❌ Doesn't Support Multi-Peer (Sandbox)
 
 ❌ Doesn't have Scene Loading yet
+
+# Project Walkthrough
+
+##ConnectionManager
+
+Handling Connections: Start Client/Server, OnClientJoined/Left
+
+LevelManager: Handling Gameloop (De/Spawn Player)
+
+PlayerController: PlayerInputHandler -- (PlayerInput) --> PlayerController
+
+PlayerManager: Tracking Connected & Alive Players
+
+
