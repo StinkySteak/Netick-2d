@@ -1,6 +1,7 @@
 # Netick-2d
 ## A Simple 2D Sample for Netick Networking Solution
-### Built on Unity 2021.3.13f1
+### Built on Unity 2021.3.21f1
+### Render Pipeline: BiRP
 
 [Netick Official Website](https://netick.net)
 
@@ -16,7 +17,7 @@ Feature (Pros):
 
 ✔️ Easy Respawn/Despawn Mechanism (Tracking Alive Player with PlayerManager)
 
-
+✔️ Disable Domain Reload compatible
 
 
 Cons: 
