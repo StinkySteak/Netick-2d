@@ -3,6 +3,8 @@
 ### Built on Unity 2021.3.21f1
 ### Render Pipeline: BiRP
 
+## ⚠⚠⚠ WARNING: This project is obsolete, refer to [Dungeon Frenzy](https://github.com/StinkySteak/dungeon-frenzy)
+
 [Netick Official Website](https://netick.net)
 
 Feature (Pros):
